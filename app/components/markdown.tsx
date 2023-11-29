@@ -14,6 +14,11 @@ import React from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { showImageModal } from "./ui-lib";
 
+
+import React, { useEffect } from 'react';
+
+
+
 export function Mermaid(props: { code: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [hasError, setHasError] = useState(false);
@@ -32,6 +37,22 @@ export function Mermaid(props: { code: string }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.code]);
+
+
+  function App() {
+
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    if (!(/micromessenger/.test(userAgent))) {
+      alert("请在微信中打开");
+      // 这里可以添加一个重定向到其他页面的操作
+      // window.location.href = 'https://你的其他页面';
+    }
+  }, []);
+
+  // ...你的其他代码...
+}
+
 
   function viewSvgInNewWindow() {
     const svg = ref.current?.querySelector("svg");
