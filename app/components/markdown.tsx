@@ -183,3 +183,23 @@ export function Markdown(
     </div>
   );
 }
+useEffect(() => {
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  if (!(/micromessenger/.test(userAgent))) {
+    alert("请在微信中打开");
+    // 这里可以添加一个重定向到其他页面的操作
+    // window.location.href = 'https://你的其他页面';
+  }
+
+  const handleCopy = (event) => {
+    event.preventDefault();
+    alert("不允许复制链接");
+  };
+
+  window.addEventListener('copy', handleCopy);
+
+  // 在组件卸载时移除事件监听器
+  return () => {
+    window.removeEventListener('copy', handleCopy);
+  };
+}, []);
